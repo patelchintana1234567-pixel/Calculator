@@ -1,57 +1,23 @@
 workflows:
-  android-build:
-    name: Android Build
-    max_build_duration: 30
+  android-workflow:
+    name: android-workflow
+    max_build_duration: 60
     instance_type: mac_mini_m2
     environment:
-      node: 20
-      java: 17
+      flutter: stable
+    cache:
+      cache_paths:
+        - $FLUTTER_ROOT/.pub-cache
     scripts:
-      - name: Install Bun
+      - name: Get packages
         script: |
-          curl -fsSL https://bun.sh/install | bash
-          export BUN_INSTALL="$HOME/.bun"
-          export PATH="$BUN_INSTALL/bin:$PATH"
-          echo "Bun installed"
-          bun --version
-          
-      - name: Install dependencies
-        script: |
-          export BUN_INSTALL="$HOME/.bun"
-          export PATH="$BUN_INSTALL/bin:$PATH"
-          bun install
-          
-      - name: Create Android folder automatically
-        script: |
-          export BUN_INSTALL="$HOME/.bun"
-          export PATH="$BUN_INSTALL/bin:$PATH"
-          
-          # Capacitor add karo
-          bun add @capacitor/core @capacitor/cli @capacitor/android || true
-          
-          # Pehla wala dummy android folder hoy to delete karo
-          rm -rf android
-          
-          # Capacitor init - webDir dist che
-          bunx cap init Calculator com.patelchintana.calculator --web-dir=dist || true
-          
-          # Build web app
-          bun run build || npm run build || bunx vite build || true
-          
-          # Android platform add - aa thi real android folder banse
-          bunx cap add android
-          
-          # Copy web build to android
-          bunx cap sync android
-          
+          flutter packages pub get
       - name: Build APK
         script: |
-          export BUN_INSTALL="$HOME/.bun"
-          export PATH="$BUN_INSTALL/bin:$PATH"
-          cd android
-          chmod +x ./gradlew
-          ./gradlew assembleDebug --no-daemon
-          
+          flutter build apk --release
     artifacts:
-      - android/app/build/outputs/**/*.apk
-      - android/app/build/outputs/**/*.aab
+      - build/**/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - patelchintana1234567@gmail.com
