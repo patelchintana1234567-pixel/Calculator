@@ -1,0 +1,6 @@
+// DO NOT EDIT
+android {
+    defaultConfig {
+        manifestPlaceholders = [usesCleartextTraffic: "true"]
+    }
+}

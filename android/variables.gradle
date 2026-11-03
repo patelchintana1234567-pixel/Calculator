@@ -1,0 +1,11 @@
+ext {
+    minSdkVersion = 22
+    compileSdkVersion = 34
+    targetSdkVersion = 34
+    androidxActivityVersion = '1.8.0'
+    androidxAppCompatVersion = '1.6.1'
+    androidxJunitVersion = '1.1.5'
+    androidxEspressoVersion = '3.5.1'
+    junitVersion = '4.13.2'
+    androidxWebkitVersion = '1.6.1'
+}
