@@ -1,0 +1,6 @@
+{
+  "name": "Android DPC Calculator Vault",
+  "description": "Enterprise Android Device Policy Controller (DPC) stealth calculator vault with lockdown policies and device owner management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
