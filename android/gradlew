@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-echo "Gradle wrapper placeholder - replace with real project build"
-./gradlew "$@"
