@@ -33,9 +33,9 @@ workflows:
         script: |
           cd android
           chmod +x ./gradlew || true
-          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            curl -L -o gradle/wrapper/gradle-wrapper.jar https://github.com
-          fi
+          mkdir -p gradle/wrapper
+          # ગ્રેડલ રેપોમાંથી ઓફિશિયલ જાર ડાઉનલોડ કરવાનો નવો રસ્તો
+          curl -L -o gradle/wrapper/gradle-wrapper.jar https://githubusercontent.com
           ./gradlew assembleDebug --stacktrace
     artifacts:
       - android/app/build/outputs/apk/**/*.apk
