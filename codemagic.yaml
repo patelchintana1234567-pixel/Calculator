@@ -10,6 +10,7 @@ workflows:
       - name: Install dependencies
         script: |
           npm install --legacy-peer-deps
+          npm install @capacitor/core @capacitor/cli @capacitor/android --legacy-peer-deps
       - name: Build web
         script: |
           npm run build
