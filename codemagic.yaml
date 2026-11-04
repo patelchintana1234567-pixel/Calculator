@@ -13,6 +13,18 @@ workflows:
       - name: Build web
         script: |
           npm run build
+      - name: Fix Capacitor config for Codemagic
+        script: |
+          echo "Fixing config file..."
+          rm -f capacitor.config.ts
+          cat > capacitor.config.json << 'EOF'
+          {
+            "appId": "com.calculator.app",
+            "appName": "Calculator",
+            "webDir": "dist",
+            "bundledWebRuntime": false
+          }
+          EOF
       - name: Sync to Android
         script: |
           npx @capacitor/cli sync android
