@@ -15,7 +15,7 @@ workflows:
           npm run build
       - name: Sync to Android
         script: |
-          npx cap sync android
+          npx @capacitor/cli sync android
       - name: Build APK
         script: |
           cd android
