@@ -32,7 +32,6 @@ workflows:
       - name: Build APK
         script: |
           cd android
-          # કમાન્ડ જે ઓટોમેટિક ગ્રેડલ સેટ કરી દેશે
           gradle wrapper --gradle-version 8.0
           chmod +x ./gradlew || true
           ./gradlew assembleDebug --stacktrace
